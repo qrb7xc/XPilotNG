@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 39;
+	objectVersion = 46;
 	objects = {
 		1058C7A1FEA54F0111CA2CBB = {
 			isa = PBXFileReference;
@@ -48,15 +48,298 @@
 //292
 //293
 //294
+/* Begin XCBuildConfiguration section */
+		C34534C626B68BC300F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				WARNING_CFLAGS = "-Wmost";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C34534C726B68BC300F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				WARNING_CFLAGS = "-Wmost";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C34534CD26B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4.7.3ng;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/contrib/macosx/config.h";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/contrib/macosx/Info.plist";
+				INSTALL_PATH = /Applications;
+				PRODUCT_NAME = XPilotNG;
+			};
+			name = Debug;
+		};
+		C34534CE26B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 4.7.3ng;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/contrib/macosx/config.h";
+				INFOPLIST_FILE = "$(SRCROOT)/contrib/macosx/Info.plist";
+				PRODUCT_NAME = XPilotNG;
+			};
+			name = Release;
+		};
+		C34534CF26B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/contrib/macosx/config.h";
+				INSTALL_PATH = /usr/local/games/bin;
+				PRODUCT_NAME = "xpilot-ng-server";
+			};
+			name = Debug;
+		};
+		C34534D026B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/contrib/macosx/config.h";
+				INSTALL_PATH = /usr/local/games/bin;
+				PRODUCT_NAME = "xpilot-ng-server";
+			};
+			name = Release;
+		};
+		C34534D126B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "XPilotNG Data";
+			};
+			name = Debug;
+		};
+		C34534D226B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = "XPilotNG Data";
+			};
+			name = Release;
+		};
+		C34534D326B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "XPilotNG Client";
+			};
+			name = Debug;
+		};
+		C34534D426B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = "XPilotNG Client";
+			};
+			name = Release;
+		};
+		C34534D526B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "XPilotNG Server";
+			};
+			name = Debug;
+		};
+		C34534D626B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = "XPilotNG Server";
+			};
+			name = Release;
+		};
+		C34534D726B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = XPilotNG;
+			};
+			name = Debug;
+		};
+		C34534D826B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = XPilotNG;
+			};
+			name = Release;
+		};
+		C34534D926B6917C00F171F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "contrib/macosx/xpngcc-Info.plist";
+				PRODUCT_NAME = "XPilotNG Control Center.app";
+			};
+			name = Debug;
+		};
+		C34534DA26B6917C00F171F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "contrib/macosx/xpngcc-Info.plist";
+				PRODUCT_NAME = "XPilotNG Control Center.app";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C34534B226B68BC200F171F5 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534C626B68BC300F171F5 /* Debug */,
+				C34534C726B68BC300F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534DB26B6917C00F171F5 /* Build configuration list for PBXNativeTarget "XPilotNG.app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534CD26B6917C00F171F5 /* Debug */,
+				C34534CE26B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534DC26B6917C00F171F5 /* Build configuration list for PBXNativeTarget "xpilot-ng-server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534CF26B6917C00F171F5 /* Debug */,
+				C34534D026B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534DD26B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG Data" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534D126B6917C00F171F5 /* Debug */,
+				C34534D226B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534DE26B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG Client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534D326B6917C00F171F5 /* Debug */,
+				C34534D426B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534DF26B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG Server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534D526B6917C00F171F5 /* Debug */,
+				C34534D626B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534E026B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534D726B6917C00F171F5 /* Debug */,
+				C34534D826B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34534E126B6917C00F171F5 /* Build configuration list for PBXNativeTarget "XPilotNG Control Center.app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34534D926B6917C00F171F5 /* Debug */,
+				C34534DA26B6917C00F171F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
 		29B97313FDCFA39411CA2CEA = {
 			buildSettings = {
 			};
-			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA,
-				4A9504CDFFE6A4B311CA0CBA,
-			);
 			hasScannedForEncodings = 1;
 			isa = PBXProject;
+
+			buildConfigurationList = C34534B226B68BC200F171F5;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+
 			mainGroup = 29B97314FDCFA39411CA2CEA;
 			projectDirPath = "";
 			targets = (
@@ -101,37 +384,6 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-//290
-//291
-//292
-//293
-//294
-//4A0
-//4A1
-//4A2
-//4A3
-//4A4
-		4A9504CCFFE6A4B311CA0CBA = {
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				ZERO_LINK = NO;
-			};
-			isa = PBXBuildStyle;
-			name = Development;
-		};
-		4A9504CDFFE6A4B311CA0CBA = {
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
-			};
-			isa = PBXBuildStyle;
-			name = Deployment;
-		};
 //4A0
 //4A1
 //4A2
@@ -143,6 +395,7 @@
 //8D3
 //8D4
 		8D1107260486CEB800E47090 = {
+			buildConfigurationList = C34534DB26B6917C00F171F5 /* Build configuration list for PBXNativeTarget "XPilotNG.app" */;
 			buildPhases = (
 				8D1107290486CEB800E47090,
 				8D11072C0486CEB800E47090,
@@ -151,18 +404,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = contrib/macosx/config.h;
-				HEADER_SEARCH_PATHS = /Library/Frameworks/SDL.framework/Versions/Current/Headers;
-				INFOPLIST_FILE = contrib/macosx/Info.plist;
-				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
-				PREBINDING = NO;
-				PRODUCT_NAME = XPilotNG;
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			isa = PBXNativeTarget;
@@ -459,18 +700,11 @@
 			sourceTree = "<group>";
 		};
 		E32F9D5F08FB14AC00AE0B2A = {
+			buildConfigurationList = C34534E026B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG" */;
 			buildPhases = (
 				E32F9D6608FB14E200AE0B2A,
 				E32F9D6C08FB161000AE0B2A,
 			);
-			buildSettings = {
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = XPilotNG;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
-			};
 			dependencies = (
 				E32F9D6108FB14C100AE0B2A,
 				E32F9D6308FB14C400AE0B2A,
@@ -3014,17 +3248,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E3A5D64808FC4FE800869090 = {
+			buildConfigurationList = C34534E126B6917C00F171F5 /* Build configuration list for PBXNativeTarget "XPilotNG Control Center.app" */;
 			buildPhases = (
 				E3A5D64508FC4FE800869090,
 				E3A5D67B08FC5B7F00869090,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				INFOPLIST_FILE = "contrib/macosx/xpngcc-Info.plist";
-				PREBINDING = NO;
-				PRODUCT_NAME = "XPilotNG Control Center";
-			};
 			dependencies = (
 				E3A5D65608FC523500869090,
 				E3A5D65908FC55A700869090,
@@ -3810,20 +4040,13 @@
 			};
 		};
 		E3E0AECF080527B30080821B = {
+			buildConfigurationList = C34534DD26B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG Data" */;
 			buildPhases = (
 				E32F9D7508FB724200AE0B2A,
 				E32F97E108FB0B2200AE0B2A,
 				E32F97E308FB0BA000AE0B2A,
 				E32F9D4708FB0D2800AE0B2A,
 			);
-			buildSettings = {
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "XPilotNG Data";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
-			};
 			dependencies = (
 			);
 			isa = PBXAggregateTarget;
@@ -3831,18 +4054,11 @@
 			productName = "XPilotNG Data";
 		};
 		E3E0AEE7080528F10080821B = {
+			buildConfigurationList = C34534DE26B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG Client" */;
 			buildPhases = (
 				E32F9D4A08FB0E0600AE0B2A,
 				E32F9D4808FB0DC400AE0B2A,
 			);
-			buildSettings = {
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "XPilotNG Client";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
-			};
 			dependencies = (
 				E3E0AEF6080529910080821B,
 			);
@@ -3863,18 +4079,11 @@
 			targetProxy = E3E0AEF5080529910080821B;
 		};
 		E3E0AEF9080529BB0080821B = {
+			buildConfigurationList = C34534DF26B6917C00F171F5 /* Build configuration list for PBXAggregateTarget "XPilotNG Server" */;
 			buildPhases = (
 				E32F9D4C08FB0E3D00AE0B2A,
 				E32F9D5008FB0E8200AE0B2A,
 			);
-			buildSettings = {
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "XPilotNG Server";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
-			};
 			dependencies = (
 				E3F939B80812D01600F425B2,
 			);
@@ -3964,22 +4173,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E3F9396C0812CCDE00F425B2 = {
+			buildConfigurationList = C34534DC26B6917C00F171F5 /* Build configuration list for PBXNativeTarget "xpilot-ng-server" */;
 			buildPhases = (
 				E3F9396A0812CCDE00F425B2,
 				E3F9396B0812CCDE00F425B2,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PREFIX_HEADER = contrib/macosx/config.h;
-				INSTALL_PATH = /usr/games/bin;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = "xpilot-ng-server";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
-			};
 			dependencies = (
 			);
 			isa = PBXNativeTarget;
