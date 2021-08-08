@@ -1,0 +1,4 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "XPilotNG";
+NSHumanReadableCopyright = "(c) __MyCompanyName__, 2005";

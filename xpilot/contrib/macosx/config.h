@@ -379,11 +379,10 @@
 
 /* socklen_t size */
 /* #undef socklen_t */
-typedef int socklen_t
 
 /* Define to empty if the keyword `volatile' does not work. Warning: valid
    code using `volatile' can become incorrect without. Disable with care. */
 /* #undef volatile */
 
-#define CONF_DATADIR "/usr/share/xpilot-ng/"
+#define CONF_DATADIR "/usr/local/share/xpilot-ng/"
 #define MACOSX_FRAMEWORKS 1

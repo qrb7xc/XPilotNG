@@ -65,6 +65,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		C30730D726BFE2AA00A55A7F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30730D626BFE2AA00A55A7F /* OpenAL.framework */; };
 		E32F97C308FB086C00AE0B2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E32F97C208FB086C00AE0B2A /* InfoPlist.strings */; };
 		E32F97E208FB0B6500AE0B2A /* XPilotNG Data.pmsp in CopyFiles */ = {isa = PBXBuildFile; fileRef = E32F97DE08FB0ADE00AE0B2A /* XPilotNG Data.pmsp */; };
 		E32F9D4408FB0CD400AE0B2A /* lib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E32F99A708FB0C6A00AE0B2A /* lib */; };
@@ -194,12 +195,10 @@
 		E34F6B8708F83D3F007373A1 /* wormhole.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6B5408F83CF8007373A1 /* wormhole.c */; };
 		E34F6B8808F83D3F007373A1 /* xp2map.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6B5608F83CF8007373A1 /* xp2map.c */; };
 		E34F6B8908F83D40007373A1 /* xpmap.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6B5708F83CF8007373A1 /* xpmap.c */; };
-		E34F6BDA08F84223007373A1 /* OpenAL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E34F6BC308F8408A007373A1 /* OpenAL.framework */; };
 		E34F6BDC08F84223007373A1 /* SDL_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E3E0ADF2080517E70080821B /* SDL_image.framework */; };
 		E34F6BDD08F84223007373A1 /* SDL_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E3E0ADF0080517D80080821B /* SDL_mixer.framework */; };
 		E34F6BDE08F84223007373A1 /* SDL_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E3E0ADEC080517970080821B /* SDL_ttf.framework */; };
 		E34F6C4208F842CD007373A1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		E34F6C4308F842CE007373A1 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34F6BC308F8408A007373A1 /* OpenAL.framework */; };
 		E34F6C4408F842CF007373A1 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34F6C1A08F84289007373A1 /* SDL.framework */; };
 		E34F6C4508F842D0007373A1 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E0ADF2080517E70080821B /* SDL_image.framework */; };
 		E34F6C4608F842D0007373A1 /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E0ADF0080517D80080821B /* SDL_mixer.framework */; };
@@ -361,7 +360,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E34F6BDA08F84223007373A1 /* OpenAL.framework in CopyFiles */,
 				E34F6C4808F842DB007373A1 /* SDL.framework in CopyFiles */,
 				E34F6BDC08F84223007373A1 /* SDL_image.framework in CopyFiles */,
 				E34F6BDD08F84223007373A1 /* SDL_mixer.framework in CopyFiles */,
@@ -385,7 +383,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* XPilotNG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPilotNG.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E32F97C008FB086100AE0B2A /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C30730CF26BFE27E00A55A7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C30730D626BFE2AA00A55A7F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		E32F97DD08FB0ADE00AE0B2A /* XPilotNG Client.pmsp */ = {isa = PBXFileReference; lastKnownFileType = file; path = "XPilotNG Client.pmsp"; sourceTree = "<group>"; };
 		E32F97DE08FB0ADE00AE0B2A /* XPilotNG Data.pmsp */ = {isa = PBXFileReference; lastKnownFileType = file; path = "XPilotNG Data.pmsp"; sourceTree = "<group>"; };
 		E32F97DF08FB0ADE00AE0B2A /* XPilotNG Server.pmsp */ = {isa = PBXFileReference; lastKnownFileType = file; path = "XPilotNG Server.pmsp"; sourceTree = "<group>"; };
@@ -646,8 +645,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30730D726BFE2AA00A55A7F /* OpenAL.framework in Frameworks */,
 				E34F6C4208F842CD007373A1 /* Cocoa.framework in Frameworks */,
-				E34F6C4308F842CE007373A1 /* OpenAL.framework in Frameworks */,
 				E34F6C4408F842CF007373A1 /* SDL.framework in Frameworks */,
 				E34F6C4508F842D0007373A1 /* SDL_image.framework in Frameworks */,
 				E34F6C4608F842D0007373A1 /* SDL_mixer.framework in Frameworks */,
@@ -700,6 +699,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C30730D626BFE2AA00A55A7F /* OpenAL.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				E34F6BC308F8408A007373A1 /* OpenAL.framework */,
 				E34F6DB708F85951007373A1 /* OpenGL.framework */,
@@ -1349,7 +1349,7 @@
 		E32F97C208FB086C00AE0B2A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E32F97C008FB086100AE0B2A /* English */,
+				C30730CF26BFE27E00A55A7F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
