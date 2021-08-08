@@ -26,6 +26,7 @@
  */
 
 #include "xpserver.h"
+#include "walls.h"
 
 struct move_parameters mp;
 static char msg[MSG_LEN];
@@ -53,12 +54,6 @@ static char msg[MSG_LEN];
 #if ((-3) / 2 != -1) || ((-3) % 2 != -1)
 #error "This code assumes that negative numbers round upwards."
 #endif
-
-struct collans {
-    int line;
-    int point;
-    clvec_t moved;
-};
 
 struct tl2 {
     int base;
@@ -108,7 +103,7 @@ shape_t ball_wire;
 struct bline *linet;
 #define S_LINES 100 /* stupid hack */
 
-struct group *groups = NULL;
+group_t *groups = NULL;
 int num_groups = 0, max_groups = 0;
 
 struct blockinfo *blockline;
@@ -932,7 +927,7 @@ static int Lines_check(int msx, int msy, int mdx, int mdy, int *mindone,
 /* Do not call this with no movement. */
 /* May not be called with point already on top of line.
  * Maybe I should change that to allow lines that could be crossed. */
-extern void Move_point(const move_t *move, struct collans *answer)
+void Move_point(const move_t *move, struct collans *answer)
 {
     int minline, mindone, minheight;
     int block;
