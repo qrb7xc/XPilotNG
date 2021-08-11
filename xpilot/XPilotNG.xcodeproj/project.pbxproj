@@ -356,7 +356,7 @@
 		};
 		E34F6B9808F83FAD007373A1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
@@ -1361,6 +1361,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1378,8 +1379,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
 			};
@@ -1405,6 +1408,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/contrib/macosx/Info.plist";
 				INSTALL_PATH = /Applications;
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) /Library/Frameworks @executable_path/../Frameworks";
 				PRODUCT_NAME = XPilotNG;
 			};
 			name = Debug;
@@ -1424,6 +1428,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/contrib/macosx/config.h";
 				INFOPLIST_FILE = "$(SRCROOT)/contrib/macosx/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) /Library/Frameworks @executable_path/../Frameworks";
 				PRODUCT_NAME = XPilotNG;
 			};
 			name = Release;
