@@ -5,7 +5,7 @@
     Feel free to customize this file to suit your needs
 */
 
-#import <SDL/SDL.h>
+#import <SDL2/SDL.h>
 #import "macosx_sdlmain.h"
 #include <sys/param.h> /* for MAXPATHLEN */
 #include <unistd.h>
