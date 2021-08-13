@@ -62,6 +62,8 @@
 #define STATUSWIDGET      104
 #define PLAYERLISTWIDGET  105
 
+extern SDL_Window  *mainWindow;
+
 static int status_column_widths[] = { 100, 0, 100, 70 };
 
 typedef struct {
@@ -1189,7 +1191,7 @@ int Meta_window(Connect_param_t *conpar)
 	glEnable(GL_SCISSOR_TEST);
 	DrawGLWidgetsi(meta, 0, 0, draw_width, draw_height);
 	glDisable(GL_SCISSOR_TEST);
-	SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(mainWindow);
 	
 	SDL_WaitEvent(&evt);
 	do {
@@ -1253,7 +1255,7 @@ int Meta_window(Connect_param_t *conpar)
 				   target->motiondata);
 		break;
 
-	    case SDL_VIDEOEXPOSE:
+	    case SDL_WINDOWEVENT_EXPOSED:
 		glDisable(GL_SCISSOR_TEST);
 		set_alphacolor(blackRGBA);
 		glBegin(GL_QUADS);

@@ -37,14 +37,9 @@
 extern int Gui_init(void);
 extern void Gui_cleanup(void);
 
-int draw_depth;
-
-/* This holds video information assigned at initialise */
-const SDL_VideoInfo *videoInfo;
-
-/* Flags to pass to SDL_SetVideoMode */
-int videoFlags;
-SDL_Surface  *MainSDLSurface = NULL;
+SDL_WindowFlags windowFlags = 0;
+SDL_Window  *mainWindow = NULL;
+SDL_GLContext glContext = NULL;
 
 font_data gamefont;
 font_data mapfont;
@@ -93,25 +88,29 @@ int Init_playing_windows(void)
 
 static bool find_size(int *w, int *h)
 {
-    SDL_Rect **modes, *m;
+    SDL_DisplayMode mode;
     int i, d, best_i, best_d;
 
-    modes = SDL_ListModes(NULL, videoFlags);
-    if (modes == NULL) return false;
-    if (modes == (SDL_Rect**)-1) return true;
+    int displayIndex = 0;
+    int count = SDL_GetNumDisplayModes(displayIndex);
     
     best_i = 0;
     best_d = INT_MAX;
-    for (i = 0; modes[i]; i++) {
-	m = modes[i];
-	d = (m->w - *w)*(m->w - *w) + (m->h - *h)*(m->h - *h);
+    for (i = 0; i < count; i++) {
+	if (SDL_GetDisplayMode(displayIndex, i, &mode) != 0) {
+	    error("SDL_GetDisplayMode failed: %s", SDL_GetError());
+	    return false;
+	}
+	d = (mode.w - *w) * (mode.w - *w) + (mode.h - *h) * (mode.h - *h);
 	if (d < best_d) {
 	    best_d = d;
 	    best_i = i;
 	}
     }
-    *w = modes[best_i]->w;
-    *h = modes[best_i]->h;
+    
+    SDL_GetDisplayMode(displayIndex, i, &mode);
+    *w = mode.w;
+    *h = mode.h;
     return true;
 }
 
@@ -129,53 +128,48 @@ int Init_window(void)
 
     Conf_print();
 
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         error("failed to initialize SDL: %s", SDL_GetError());
         return -1;
     }
 
     atexit(SDL_Quit);
 
-    /* Fetch the video info */
-    videoInfo = SDL_GetVideoInfo( );
-
     num_spark_colors=8;
 
     /* the flags to pass to SDL_SetVideoMode */
-    videoFlags  = SDL_OPENGL;          /* Enable OpenGL in SDL          */
-    videoFlags |= SDL_GL_DOUBLEBUFFER; /* Enable double buffering       */
-    videoFlags |= SDL_HWPALETTE;       /* Store the palette in hardware */
+    windowFlags  = SDL_WINDOW_OPENGL;          /* Enable OpenGL in SDL          */
 #ifndef _WINDOWS
-    videoFlags |= SDL_RESIZABLE;       /* Enable window resizing        */
+    windowFlags |= SDL_WINDOW_RESIZABLE;       /* Enable window resizing        */
 #else
-    videoFlags |= SDL_FULLSCREEN;
+    windowFlags |= SDL_WINDOW_FULLSCREEN;
 #endif
-
-    /** This checks to see if surfaces can be stored in memory */
-    if ( videoInfo->hw_available )
-        videoFlags |= SDL_HWSURFACE;
-    else
-        videoFlags |= SDL_SWSURFACE;
-
-    /* This checks if hardware blits can be done */
-    if ( videoInfo->blit_hw )
-        videoFlags |= SDL_HWACCEL;
-
-    draw_depth =  videoInfo->vfmt->BitsPerPixel;
 
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-    if (videoFlags & SDL_FULLSCREEN)
+/* TODO
+    if (windowFlags & SDL_WINDOW_FULLSCREEN)
       if (!find_size((int*)&draw_width, (int*)&draw_height))
-      	videoFlags ^= SDL_FULLSCREEN;
+      	windowFlags ^= SDL_WINDOW_FULLSCREEN;
+*/
 
-    if ((MainSDLSurface = SDL_SetVideoMode(draw_width,
+    if ((mainWindow = SDL_CreateWindow(TITLE,
+    		 SDL_WINDOWPOS_UNDEFINED,
+			 SDL_WINDOWPOS_UNDEFINED,
+    		 draw_width,
 			 draw_height,
-			 draw_depth,
-			 videoFlags )) == NULL) {
+ 			 windowFlags )) == NULL) {
       error("Could not find a valid GLX visual for your display");
 	  return -1;
     }
+    
+    glContext = SDL_GL_CreateContext(mainWindow);
+    if (!glContext) {
+        error("Could not create OpenGL context: %s\n", SDL_GetError());
+        SDL_DestroyWindow(mainWindow);
+        return -1;
+    }
+
 
     SDL_GL_GetAttribute(SDL_GL_RED_SIZE, &value);
     printf("RGB bpp %d/", value);
@@ -194,9 +188,6 @@ int Init_window(void)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    /* Set title for window */
-    SDL_WM_SetCaption(TITLE, NULL);
-    
     /* this prevents a freetype crash if you pass non existant fonts */
     if (!file_exists(gamefontname)) {
     	error("cannot find your game font '%s'.\n" \
@@ -261,22 +252,15 @@ int Resize_Window( int width, int height )
 {
     SDL_Rect b = {0,0,0,0};
 
-	if (videoFlags & SDL_FULLSCREEN)
+	if (windowFlags & SDL_WINDOW_FULLSCREEN)
 		if (!find_size(&width, &height))
 			return -1;
-    
+
     b.w = draw_width = width;
     b.h = draw_height = height;
     
     SetBounds_GLWidget(MainWidget,&b);
     
-    if (!SDL_SetVideoMode( width,
-			   height,
-			   draw_depth, 
-			   videoFlags ))
-	return -1;
-    
-
     /* change to the projection matrix and set our viewing volume. */
     glMatrixMode( GL_PROJECTION );
 
@@ -317,7 +301,7 @@ static bool Set_geometry(xp_option_t *opt, const char *s)
 	sscanf(s, "%d%*c%d", &w, &h);
     }
     if (w == 0 || h == 0) return false;
-    if (MainSDLSurface != NULL) {
+    if (mainWindow != NULL) {
 	Resize_Window(w, h);
     } else {
 	draw_width = w;

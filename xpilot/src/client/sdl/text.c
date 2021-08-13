@@ -82,8 +82,7 @@ GLuint SDL_GL_LoadTexture(SDL_Surface *surface, texcoord_t *texcoord)
     int w, h;
     SDL_Surface *image;
     SDL_Rect area;
-    Uint32 saved_flags;
-    Uint8  saved_alpha;
+    SDL_BlendMode saved_blend_mode;
 
     /* Use the surface width and height expanded to powers of 2 */
     w = next_p2(surface->w);
@@ -107,10 +106,9 @@ GLuint SDL_GL_LoadTexture(SDL_Surface *surface, texcoord_t *texcoord)
     }
 
     /* Save the alpha blending attributes */
-    saved_flags = surface->flags&(SDL_SRCALPHA|SDL_RLEACCELOK);
-    saved_alpha = surface->format->alpha;
-    if ( (saved_flags & SDL_SRCALPHA) == SDL_SRCALPHA ) {
-    	    SDL_SetAlpha(surface, 0, 0);
+    SDL_GetSurfaceBlendMode(surface, &saved_blend_mode);
+    if (saved_blend_mode != SDL_BLENDMODE_NONE) {
+	SDL_SetSurfaceBlendMode(surface, SDL_BLENDMODE_NONE);
     }
 
     /* Copy the surface into the GL texture image */
@@ -121,8 +119,8 @@ GLuint SDL_GL_LoadTexture(SDL_Surface *surface, texcoord_t *texcoord)
     SDL_BlitSurface(surface, &area, image, &area);
 
     /* Restore the alpha blending attributes */
-    if ( (saved_flags & SDL_SRCALPHA) == SDL_SRCALPHA ) {
-    	    SDL_SetAlpha(surface, saved_flags, saved_alpha);
+    if (saved_blend_mode != SDL_BLENDMODE_NONE) {
+    	    SDL_SetSurfaceBlendMode(surface, saved_blend_mode);
     }
 
     /* Create an OpenGL texture for the image */
@@ -400,7 +398,7 @@ bool render_text(font_data *ft_font, const char *text, string_tex_t *string_tex)
     	    src.h = dest.h = string_glyph->h;
 	    
     	    glyph = SDL_CreateRGBSurface(0,dest.w,dest.h,32,0,0,0,0);
-    	    SDL_SetColorKey(glyph, SDL_SRCCOLORKEY, 0x00000000);
+    	    SDL_SetColorKey(glyph, SDL_TRUE, 0x00000000);
     	    SDL_BlitSurface(string_glyph,&src,glyph,&dest);
     
   	    glGetError();

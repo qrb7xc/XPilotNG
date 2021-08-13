@@ -338,7 +338,6 @@ ConsoleInformation *CON_Init(const char *FontName,
 	return NULL;
     }
     newinfo->Visible = CON_CLOSED;
-    newinfo->WasUnicode = 0;
     newinfo->RaiseOffset = 0;
     newinfo->ConsoleLines = NULL;
     newinfo->CommandLines = NULL;
@@ -462,9 +461,6 @@ void CON_Show(ConsoleInformation * console)
     if (console) {
 	console->Visible = CON_OPENING;
 	CON_UpdateConsole(console);
-
-	console->WasUnicode = SDL_EnableUNICODE(-1);
-	SDL_EnableUNICODE(1);
     }
 }
 
@@ -473,7 +469,6 @@ void CON_Hide(ConsoleInformation * console)
 {
     if (console) {
 	console->Visible = CON_CLOSING;
-	SDL_EnableUNICODE(console->WasUnicode);
     }
 }
 
@@ -700,6 +695,7 @@ int CON_Background(ConsoleInformation * console, const char *image, int x,
 {
     SDL_Surface *temp;
     SDL_Rect backgroundsrc, backgrounddest;
+    SDL_DisplayMode dmode;
 
     if (!console)
 	return 1;
@@ -726,7 +722,10 @@ int CON_Background(ConsoleInformation * console, const char *image, int x,
 	return 1;
     }
 
-    console->BackgroundImage = SDL_DisplayFormat(temp);
+    if (SDL_GetCurrentDisplayMode(0, &dmode) < 0) {
+    	return 1;
+    }
+    console->BackgroundImage = SDL_ConvertSurfaceFormat(temp, dmode.format, 0);
     SDL_FreeSurface(temp);
     console->BackX = x;
     console->BackY = y;
@@ -775,6 +774,7 @@ int CON_Resize(ConsoleInformation * console, SDL_Rect rect)
 {
     SDL_Surface *Temp;
     SDL_Rect backgroundsrc, backgrounddest;
+    SDL_DisplayMode dmode;
 
     if (!console)
 	return 1;
@@ -804,7 +804,11 @@ int CON_Resize(ConsoleInformation * console, SDL_Rect rect)
 	PRINT_ERROR("Couldn't create the console->ConsoleSurface\n");
 	return 1;
     }
-    console->ConsoleSurface = SDL_DisplayFormat(Temp);
+
+    if (SDL_GetCurrentDisplayMode(0, &dmode) < 0) {
+	return 1;
+    }
+    console->ConsoleSurface = SDL_ConvertSurfaceFormat(Temp, dmode.format, 0);
     SDL_FreeSurface(Temp);
 
     /* Load the dirty rectangle for user input */
@@ -817,7 +821,7 @@ int CON_Resize(ConsoleInformation * console, SDL_Rect rect)
 	PRINT_ERROR("Couldn't create the input background\n");
 	return 1;
     }
-    console->InputBackground = SDL_DisplayFormat(Temp);
+    console->InputBackground = SDL_ConvertSurfaceFormat(Temp, dmode.format, 0);
     SDL_FreeSurface(Temp);
 
     /* Now reset some stuff dependent on the previous size */
@@ -1063,11 +1067,12 @@ void Cursor_Add(ConsoleInformation * console, SDL_Event * event)
     int len = 0;
 
     /* Again: the commandline has to hold the command and the cursor (+1) */
+    /* TODO: unicode */
     if (strlen(Topmost->Command) + 1 < CON_CHARS_PER_LINE
-	&& event->key.keysym.unicode) {
+	&& event->key.keysym.sym) {
 	Topmost->CursorPos++;
 	len = strlen(Topmost->LCommand);
-	Topmost->LCommand[len] = (char) event->key.keysym.unicode;
+	Topmost->LCommand[len] = (char) event->key.keysym.sym;
 	Topmost->LCommand[len + sizeof(char)] = '\0';
 	Assemble_Command(console);
     }
