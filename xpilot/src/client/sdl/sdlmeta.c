@@ -109,6 +109,24 @@ typedef struct {
     char     *players_str;
 } PlayerListWidget;
 
+/* double linked list */
+struct Node {
+  struct Node *prev;
+  struct Node *next;
+  void *data;
+};
+typedef struct Node List;
+
+static void FreeList(List* list)
+{
+    while (list != NULL)
+    {
+    	List *next = list->next;
+    	free(list);
+    	list = next;
+    }
+}
+
 
 static void Scroll_PlayerListWidget(GLfloat pos, void *data)
 {
@@ -479,7 +497,40 @@ static void SelectRow_MetaWidget(GLWidget *widget, MetaRowWidget *row)
     table->selected = row;
 }
 
-static server_info_t *GetSelectedServer_MetaWidget(GLWidget *widget)
+static List* BuildMetaRowWidgetList(GLWidget *widget)
+{
+    GLWidget *table, *row;
+    List *head = NULL, *prev = NULL, *current;
+
+    if (widget->WIDGET != METAWIDGET) {
+	error("expected METAWIDGET got [%d]", widget->WIDGET);
+	return NULL;
+    }
+
+    table = ((MetaWidget*)widget->wid_info)->table;
+    for (row = table->children; row; row = row->next) {
+	if (row->WIDGET == METAROWWIDGET) {
+	    current = (List*)malloc(sizeof(List));
+	    if (current == NULL) {
+		error("out of memory");
+		FreeList(head);
+		return NULL;
+	    }
+	    current->prev = prev;
+	    current->next = NULL;
+	    current->data = row->wid_info;
+	    if (head == NULL) {
+	    	head = current;
+	    } else {
+	    	prev->next = current;
+	    }
+	    prev = current;
+	}
+    }
+
+    return head;
+}
+static MetaRowWidget *GetSelectedRow_MetaWidget(GLWidget *widget)
 {
     MetaWidget *meta;
 
@@ -488,7 +539,16 @@ static server_info_t *GetSelectedServer_MetaWidget(GLWidget *widget)
 	return NULL;
     }
     meta = (MetaWidget*)widget->wid_info;
-    return ((MetaTableWidget*)meta->table->wid_info)->selected->sip;
+    return ((MetaTableWidget*)meta->table->wid_info)->selected;
+}
+
+static server_info_t *GetSelectedServer_MetaWidget(GLWidget *widget)
+{
+    MetaRowWidget *row = GetSelectedRow_MetaWidget(widget);
+    if (row) {
+    	return row->sip;
+    }
+    return NULL;
 }
 
 static void Paint_MetaRowWidget(GLWidget *widget)
@@ -968,6 +1028,13 @@ static void handleKeyPress(GLWidget *meta, SDL_keysym *keysym )
 	evt.type = SDL_QUIT;
 	SDL_PushEvent(&evt);
 	break;
+    case SDLK_RETURN:
+    case SDLK_KP_ENTER:
+    	OnClick_Join(NULL);
+	break;
+    case SDLK_r:
+    	OnClick_Refresh(NULL);
+	break;
     case SDLK_F11:
 	/* F11 key was pressed
 	 * this toggles fullscreen mode
@@ -977,12 +1044,42 @@ static void handleKeyPress(GLWidget *meta, SDL_keysym *keysym )
 		/* SDL_WM_ToggleFullScreen(MainSDLSurface); */
 #endif
 	break;
-    case SDLK_UP: 
+    case SDLK_UP:
+    {
 	/* move the cursor up */
+	MetaRowWidget *row = NULL;
+	MetaRowWidget *selected = GetSelectedRow_MetaWidget(meta);
+	List *list = BuildMetaRowWidgetList(meta);
+	for (; list != NULL; list = list->next)
+	    if (list->data == selected && list->prev != NULL) {
+	    	row = (MetaRowWidget*)list->prev->data;
+	    	break;
+	}
+	FreeList(list);
+	
+	if (row != NULL) {
+	    SelectRow_MetaWidget(meta,  row);
+	}
 	break;
-    case SDLK_DOWN: 
-	/* move the curor down */
+    }
+    case SDLK_DOWN:
+    {
+	/* move the cursor down */
+	MetaRowWidget *row = NULL;
+	MetaRowWidget *selected = GetSelectedRow_MetaWidget(meta);
+	List *list = BuildMetaRowWidgetList(meta);
+	for (; list != NULL; list = list->next)
+	    if (list->data == selected && list->next != NULL) {
+	    	row = (MetaRowWidget*)list->next->data;
+	    	break;
+	}
+	FreeList(list);
+	
+	if (row != NULL) {
+	    SelectRow_MetaWidget(meta,  row);
+	}
 	break;
+    }
     default:
 	break;
     }
