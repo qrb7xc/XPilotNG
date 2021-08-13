@@ -22,7 +22,7 @@
 #include "xpclient_sdl.h"
 
 #include "sdlpaint.h"
-#include "SDL_gfxPrimitives.h"
+#include "SDL2_gfxPrimitives.h"
 #include "radar.h"
 #include "glwidgets.h"
 
