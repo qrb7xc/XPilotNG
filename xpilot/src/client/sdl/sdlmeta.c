@@ -1016,7 +1016,7 @@ static bool join_server(Connect_param_t *conpar, server_info_t *sip)
     return false;
 }
 
-static void handleKeyPress(GLWidget *meta, SDL_keysym *keysym )
+static void handleKeyPress(GLWidget *meta, SDL_Keysym *keysym )
 {
     /*static unsigned int row = 1;*/
     SDL_Event evt;
