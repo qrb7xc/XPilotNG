@@ -134,7 +134,8 @@ int Process_event(SDL_Event *evt)
 	
     case SDL_KEYDOWN:
 	if (Console_isVisible()) break;
-	Keyboard_button_pressed((xp_keysym_t)evt->key.keysym.sym);
+	if (evt->key.repeat == 0)
+	    Keyboard_button_pressed((xp_keysym_t)evt->key.keysym.sym);
 	break;
 	
     case SDL_KEYUP:

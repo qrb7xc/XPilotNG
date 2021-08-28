@@ -202,6 +202,9 @@ static void CustomApplicationMain (int argc, char **argv)
     NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
     SDLMain				*sdlMain;
 
+    /* disable the character accent menu and enable key repeat */
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ApplePressAndHoldEnabled"];
+
     /* Ensure the application object is initialised */
     [SDLApplication sharedApplication];
     
