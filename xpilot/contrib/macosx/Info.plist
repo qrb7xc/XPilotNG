@@ -16,5 +16,7 @@
 	<string>XpNG</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
 </dict>
 </plist>
