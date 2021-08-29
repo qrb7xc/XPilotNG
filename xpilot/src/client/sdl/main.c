@@ -44,7 +44,7 @@ const char *Program_name(void)
     return "xpilot-ng-sdl";
 }
 
-int xp_main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     bool auto_shutdown = false;
     int result;
