@@ -1255,6 +1255,8 @@ int Meta_window(Connect_param_t *conpar)
 				   target->motiondata);
 		break;
 
+	    case SDL_WINDOWEVENT:
+	    	switch (evt.window.event) {
 	    case SDL_WINDOWEVENT_EXPOSED:
 		glDisable(GL_SCISSOR_TEST);
 		set_alphacolor(blackRGBA);
@@ -1266,6 +1268,7 @@ int Meta_window(Connect_param_t *conpar)
 		glEnd();
 		glEnable(GL_SCISSOR_TEST);
 		break;
+		}
 	    }
 	} while (SDL_PollEvent(&evt));
     }	

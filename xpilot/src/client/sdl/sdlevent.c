@@ -204,9 +204,12 @@ int Process_event(SDL_Event *evt)
 	}
 	break;
 
-    case SDL_WINDOWEVENT_RESIZED:
-        Resize_Window(evt->window.data1, evt->window.data2);          
-        break;
+    case SDL_WINDOWEVENT:
+	switch (evt->window.event) {
+    	case SDL_WINDOWEVENT_RESIZED:
+	    Resize_Window(evt->window.data1, evt->window.data2);
+	    break;
+	}
 
     default:
       break;
