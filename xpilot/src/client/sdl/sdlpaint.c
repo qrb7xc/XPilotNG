@@ -31,7 +31,7 @@
 
 #include "xpclient_sdl.h"
 
-#include "SDL2_gfxPrimitives.h"
+#include "SDL_gfxPrimitives.h"
 #include "sdlpaint.h"
 #include "images.h"
 #include "console.h"

@@ -145,7 +145,7 @@
 		E34F6AF508F83BEA007373A1 /* radar.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2208F83A53007373A1 /* radar.c */; };
 		E34F6AF708F83BEB007373A1 /* scrap.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2408F83A53007373A1 /* scrap.c */; };
 		E34F6AF908F83BED007373A1 /* SDL_console.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2608F83A53007373A1 /* SDL_console.c */; };
-		E34F6AFB08F83BEF007373A1 /* SDL2_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2908F83A53007373A1 /* SDL2_gfxPrimitives.c */; };
+		E34F6AFB08F83BEF007373A1 /* SDL_gfxPrimitives.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2908F83A53007373A1 /* SDL_gfxPrimitives.c */; };
 		E34F6AFE08F83BF1007373A1 /* sdlevent.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2B08F83A53007373A1 /* sdlevent.c */; };
 		E34F6AFF08F83C01007373A1 /* sdlgui.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2C08F83A54007373A1 /* sdlgui.c */; };
 		E34F6B0008F83C02007373A1 /* sdlinit.c in Sources */ = {isa = PBXBuildFile; fileRef = E34F6A2D08F83A54007373A1 /* sdlinit.c */; };
@@ -456,9 +456,9 @@
 		E34F6A2508F83A53007373A1 /* scrap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = scrap.h; sourceTree = "<group>"; };
 		E34F6A2608F83A53007373A1 /* SDL_console.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = SDL_console.c; sourceTree = "<group>"; };
 		E34F6A2708F83A53007373A1 /* SDL_console.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDL_console.h; sourceTree = "<group>"; };
-		E34F6A2808F83A53007373A1 /* SDL2_gfxPrimitives_font.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDL2_gfxPrimitives_font.h; sourceTree = "<group>"; };
-		E34F6A2908F83A53007373A1 /* SDL2_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = SDL2_gfxPrimitives.c; sourceTree = "<group>"; };
-		E34F6A2A08F83A53007373A1 /* SDL2_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDL2_gfxPrimitives.h; sourceTree = "<group>"; };
+		E34F6A2808F83A53007373A1 /* SDL_gfxPrimitives_font.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDL_gfxPrimitives_font.h; sourceTree = "<group>"; };
+		E34F6A2908F83A53007373A1 /* SDL_gfxPrimitives.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = SDL_gfxPrimitives.c; sourceTree = "<group>"; };
+		E34F6A2A08F83A53007373A1 /* SDL_gfxPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDL_gfxPrimitives.h; sourceTree = "<group>"; };
 		E34F6A2B08F83A53007373A1 /* sdlevent.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = sdlevent.c; sourceTree = "<group>"; };
 		E34F6A2C08F83A54007373A1 /* sdlgui.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = sdlgui.c; sourceTree = "<group>"; };
 		E34F6A2D08F83A54007373A1 /* sdlinit.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = sdlinit.c; sourceTree = "<group>"; };
@@ -844,11 +844,9 @@
 				E34F6A2508F83A53007373A1 /* scrap.h */,
 				E34F6A2608F83A53007373A1 /* SDL_console.c */,
 				E34F6A2708F83A53007373A1 /* SDL_console.h */,
-				E34F6A2808F83A53007373A1 /* SDL2_gfxPrimitives_font.h */,
-				E34F6A2908F83A53007373A1 /* SDL2_gfxPrimitives.c */,
-				E34F6A2A08F83A53007373A1 /* SDL2_gfxPrimitives.h */,
-				C314089326C5CF2A001260D9 /* SDL2_rotozoom.c */,
-				C314089426C5CF2A001260D9 /* SDL2_rotozoom.h */,
+				E34F6A2808F83A53007373A1 /* SDL_gfxPrimitives_font.h */,
+				E34F6A2908F83A53007373A1 /* SDL_gfxPrimitives.c */,
+				E34F6A2A08F83A53007373A1 /* SDL_gfxPrimitives.h */,
 				E34F6A2B08F83A53007373A1 /* sdlevent.c */,
 				E34F6A2C08F83A54007373A1 /* sdlgui.c */,
 				E34F6A2D08F83A54007373A1 /* sdlinit.c */,
@@ -1207,7 +1205,6 @@
 				E34F6AD008F83B8C007373A1 /* event.c in Sources */,
 				E34F6AD108F83B8D007373A1 /* gfx2d.c in Sources */,
 				E34F6AD508F83B90007373A1 /* mapdata.c in Sources */,
-				C314089526C5CF2A001260D9 /* SDL2_rotozoom.c in Sources */,
 				E34F6AD608F83B91007373A1 /* messages.c in Sources */,
 				E34F6AD708F83B92007373A1 /* meta.c in Sources */,
 				E34F6AD908F83BA8007373A1 /* netclient.c in Sources */,
@@ -1228,7 +1225,7 @@
 				E34F6AF508F83BEA007373A1 /* radar.c in Sources */,
 				E34F6AF708F83BEB007373A1 /* scrap.c in Sources */,
 				E34F6AF908F83BED007373A1 /* SDL_console.c in Sources */,
-				E34F6AFB08F83BEF007373A1 /* SDL2_gfxPrimitives.c in Sources */,
+				E34F6AFB08F83BEF007373A1 /* SDL_gfxPrimitives.c in Sources */,
 				E34F6AFE08F83BF1007373A1 /* sdlevent.c in Sources */,
 				E34F6AFF08F83C01007373A1 /* sdlgui.c in Sources */,
 				E34F6B0008F83C02007373A1 /* sdlinit.c in Sources */,
