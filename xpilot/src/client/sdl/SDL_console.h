@@ -29,7 +29,7 @@
 # include "begin_code.h"
 #endif
 #ifdef MACOSX_FRAMEWORKS
-# include <SDL/begin_code.h>
+# include <SDL2/begin_code.h>
 #endif
 
 /*! Number of visible characters in a line. Lines in the history, the commandline, or CON_Out strings cannot be longer
@@ -231,7 +231,7 @@ extern "C" {
 # include "close_code.h"
 #endif
 #ifdef MACOSX_FRAMEWORKS
-# include <SDL/close_code.h>
+# include <SDL2/close_code.h>
 #endif
 
 #endif /* SDL_CONSOLE_H */
