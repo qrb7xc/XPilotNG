@@ -66,7 +66,6 @@
 
 /* Begin PBXBuildFile section */
 		C30730D726BFE2AA00A55A7F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30730D626BFE2AA00A55A7F /* OpenAL.framework */; };
-		C314089526C5CF2A001260D9 /* SDL2_rotozoom.c in Sources */ = {isa = PBXBuildFile; fileRef = C314089326C5CF2A001260D9 /* SDL2_rotozoom.c */; };
 		C31408BB26C6C15E001260D9 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31408BA26C6C15E001260D9 /* SDL2.framework */; };
 		C31408BC26C6C15E001260D9 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C31408BA26C6C15E001260D9 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C31408CC26C6C17C001260D9 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31408C926C6C17C001260D9 /* SDL2_mixer.framework */; };
@@ -385,8 +384,6 @@
 		8D1107320486CEB800E47090 /* XPilotNG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPilotNG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30730CF26BFE27E00A55A7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C30730D626BFE2AA00A55A7F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		C314089326C5CF2A001260D9 /* SDL2_rotozoom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL2_rotozoom.c; sourceTree = "<group>"; };
-		C314089426C5CF2A001260D9 /* SDL2_rotozoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL2_rotozoom.h; sourceTree = "<group>"; };
 		C31408BA26C6C15E001260D9 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		C31408C926C6C17C001260D9 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		C31408CA26C6C17C001260D9 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -1366,14 +1363,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
@@ -1384,9 +1381,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
