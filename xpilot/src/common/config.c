@@ -25,23 +25,85 @@
 
 #include "xpcommon.h"
 
+#include <stdlib.h>
+
+char *Conf_homedir(void)
+{
+    static char conf[4096];
+    static bool init = true;
+	if (init)
+	{
+		const char* homedir = getenv("HOME");
+		if (homedir != NULL)
+		{
+			const size_t homedir_len = strnlen(homedir, 4096);
+			strncpy(conf, homedir, homedir_len);
+		}
+		else
+		{
+			// homedir unknown
+			strcpy(conf, "");
+		}
+		init = false;
+	}
+
+	return conf;
+}
+
+void prepend_str(char *str, const char *prefix, size_t len)
+{
+	memmove(str + len, str, CONF_MAXLEN - len);
+	strncpy(str, prefix, len);
+}
+
+void Conf_init()
+{
+	// fixup conf dirs
+	const char* homedir = Conf_homedir();
+	const size_t homedir_len = strnlen(homedir, CONF_MAXLEN);
+
+	prepend_str(Conf_datadir(), homedir, homedir_len);
+	prepend_str(Conf_defaults_file_name(), homedir, homedir_len);
+	prepend_str(Conf_password_file_name(), homedir, homedir_len);
+	//prepend_str(Conf_player_passwords_file_name(), homedir, homedir_len);
+	prepend_str(Conf_mapdir(), homedir, homedir_len);
+	prepend_str(Conf_fontdir(), homedir, homedir_len);
+	prepend_str(Conf_font_file(), homedir, homedir_len);
+    char *servermotdfile_env = getenv("XPILOTSERVERMOTD");
+    if (servermotdfile_env != NULL)
+    {
+		strncpy(Conf_servermotdfile(), servermotdfile_env, CONF_MAXLEN);
+	}
+	else
+	{
+		prepend_str(Conf_servermotdfile(), homedir, homedir_len);
+	}
+	prepend_str(Conf_localmotdfile(), homedir, homedir_len);
+	prepend_str(Conf_logfile(), homedir, homedir_len);
+	prepend_str(Conf_ship_file(), homedir, homedir_len);
+	prepend_str(Conf_texturedir(), homedir, homedir_len);
+	prepend_str(Conf_sounddir(), homedir, homedir_len);
+	prepend_str(Conf_soundfile(), homedir, homedir_len);
+	prepend_str(Conf_robotfile(), homedir, homedir_len);
+}
+
 char *Conf_datadir(void)
 {
-    static char conf[] = CONF_DATADIR;
+    static char conf[CONF_MAXLEN] = CONF_DATADIR;
 
     return conf;
 }
 
 char *Conf_defaults_file_name(void)
 {
-    static char conf[] = CONF_DEFAULTS_FILE_NAME;
+    static char conf[CONF_MAXLEN] = CONF_DEFAULTS_FILE_NAME;
 
     return conf;
 }
 
 char *Conf_password_file_name(void)
 {
-    static char conf[] = CONF_PASSWORD_FILE_NAME;
+    static char conf[CONF_MAXLEN] = CONF_PASSWORD_FILE_NAME;
 
     return conf;
 }
@@ -49,7 +111,7 @@ char *Conf_password_file_name(void)
 #if 0
 char *Conf_player_passwords_file_name(void)
 {
-    static char conf[] = CONF_PLAYER_PASSWORDS_FILE_NAME;
+    static char conf[CONF_MAXLEN] = CONF_PLAYER_PASSWORDS_FILE_NAME;
 
     return conf;
 }
@@ -57,16 +119,23 @@ char *Conf_player_passwords_file_name(void)
 
 char *Conf_mapdir(void)
 {
-    static char conf[] = CONF_MAPDIR;
+    static char conf[CONF_MAXLEN] = CONF_MAPDIR;
 
     return conf;
 }
 
 char *Conf_fontdir(void)
 {
-    static char conf[] = CONF_FONTDIR;
+    static char conf[CONF_MAXLEN] = CONF_FONTDIR;
 
     return conf;
+}
+
+char conf_font_file_string[CONF_MAXLEN] = CONF_FONT_FILE;
+
+char *Conf_font_file(void)
+{
+    return conf_font_file_string;
 }
 
 char *Conf_default_map(void)
@@ -78,85 +147,79 @@ char *Conf_default_map(void)
 
 char *Conf_servermotdfile(void)
 {
-    static char conf[] = CONF_SERVERMOTDFILE;
-    static char env[] = "XPILOTSERVERMOTD";
-    char *filename;
-
-    filename = getenv(env);
-    if (filename == NULL)
-	filename = conf;
-
-    return filename;
-}
-
-char *Conf_localmotdfile(void)
-{
-    static char conf[] = CONF_LOCALMOTDFILE;
+    static char conf[CONF_MAXLEN] = CONF_SERVERMOTDFILE;
 
     return conf;
 }
 
-char conf_logfile_string[] = CONF_LOGFILE;
+char *Conf_localmotdfile(void)
+{
+    static char conf[CONF_MAXLEN] = CONF_LOCALMOTDFILE;
+
+    return conf;
+}
+
+char conf_logfile_string[CONF_MAXLEN] = CONF_LOGFILE;
 
 char *Conf_logfile(void)
 {
     return conf_logfile_string;
 }
 
+char conf_ship_file_string[CONF_MAXLEN] = CONF_SHIP_FILE;
+
 char *Conf_ship_file(void)
 {
-    static char conf[] = CONF_SHIP_FILE;
-
-    return conf;
+    return conf_ship_file_string;
 }
+
+char conf_texturedir_string[CONF_MAXLEN] = CONF_TEXTUREDIR;
 
 char *Conf_texturedir(void)
 {
-    static char conf[] = CONF_TEXTUREDIR;
-
-    return conf;
+    return conf_texturedir_string;
 }
 
 char *Conf_localguru(void)
 {
-    static char conf[] = CONF_LOCALGURU;
+    static char conf[CONF_MAXLEN] = CONF_LOCALGURU;
 
     return conf;
 }
 
 char *Conf_robotfile(void)
 {
-    static char conf[] = CONF_ROBOTFILE;
+    static char conf[CONF_MAXLEN] = CONF_ROBOTFILE;
 
     return conf;
 }
 
 char *Conf_zcat_ext(void)
 {
-    static char conf[] = CONF_ZCAT_EXT;
+    static char conf[CONF_MAXLEN] = CONF_ZCAT_EXT;
 
     return conf;
 }
 
 char *Conf_zcat_format(void)
 {
-    static char conf[] = CONF_ZCAT_FORMAT;
+    static char conf[CONF_MAXLEN] = CONF_ZCAT_FORMAT;
 
     return conf;
 }
 
 char *Conf_sounddir(void)
 {
-    static char conf[] = CONF_SOUNDDIR;
+    static char conf[CONF_MAXLEN] = CONF_SOUNDDIR;
 
     return conf;
 }
 
+char conf_soundfile_string[CONF_MAXLEN] = CONF_SOUNDFILE;
+
 char *Conf_soundfile(void)
 {
-    static char conf[] = CONF_SOUNDFILE;
-
-    return conf;
+    return conf_soundfile_string;
 }
 
 

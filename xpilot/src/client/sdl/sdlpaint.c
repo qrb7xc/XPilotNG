@@ -47,7 +47,6 @@
  * Globals.
  */
 static TTF_Font     *scoreListFont;
-static const char   *scoreListFontName = CONF_FONTDIR "VeraMoBd.ttf";
 static sdl_window_t scoreListWin;
 static SDL_Rect     scoreEntryRect; /* Bounds for the last painted score entry */
 static bool         scoreListMoving;
@@ -155,6 +154,8 @@ GLWidget *Init_ScorelistWidget(void)
     tmp->bounds.w   	= 200;
     tmp->bounds.h   	= 100;
 
+	char scoreListFontName[CONF_MAXLEN];
+    snprintf(scoreListFontName, CONF_MAXLEN, "%s%s", Conf_fontdir(), "VeraMoBd.ttf");
     scoreListFont = TTF_OpenFont(scoreListFontName, 11);
     if (scoreListFont == NULL) {
 	error("opening font %s failed", scoreListFontName);

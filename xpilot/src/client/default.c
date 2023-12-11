@@ -28,6 +28,9 @@
 #include "xpclient.h"
 
 static double	hudScale;	/* Scale for HUD drawing */
+extern char	conf_ship_file_string[];	/* Default name of ship file */
+extern char	conf_texturedir_string[];	/* Default name of texture dir */
+extern char	conf_soundfile_string[];	/* Default name of sound file */
 
 static bool Set_nickName(xp_option_t *opt, const char *value)
 {
@@ -1252,7 +1255,7 @@ xp_option_t default_options[] = {
 
     XP_STRING_OPTION(
 	"shipShapeFile",
-	CONF_SHIP_FILE,
+	conf_ship_file_string,
 	NULL, 0,
 	Set_shipShapeFile, NULL, Get_shipShapeFile,
 	XP_OPTFLAG_DEFAULT,
@@ -1271,7 +1274,7 @@ xp_option_t default_options[] = {
 
     XP_STRING_OPTION(
 	"texturePath",
-	CONF_TEXTUREDIR,
+	conf_texturedir_string,
 	NULL, 0,
 	Set_texturePath, NULL, Get_texturePath,
 	XP_OPTFLAG_KEEP,
@@ -1331,7 +1334,7 @@ xp_option_t default_options[] = {
 #ifdef SOUND
     XP_STRING_OPTION(
 	"soundFile",
-	CONF_SOUNDFILE,
+	conf_soundfile_string,
 	soundFile, sizeof soundFile,
 	NULL, NULL, NULL,
 	XP_OPTFLAG_DEFAULT,

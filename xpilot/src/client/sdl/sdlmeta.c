@@ -988,7 +988,9 @@ static GLWidget *Init_MetaWidget(list_t servers)
     AppendGLWidgetList(&(tmp->children), info->table);
 
 #ifdef HAVE_SDL_IMAGE
-    surface = IMG_Load(CONF_TEXTUREDIR "sdlmetabg.png");
+    char texture_file[CONF_MAXLEN];
+    snprintf(texture_file, CONF_MAXLEN, "%s%s", Conf_texturedir(), "sdlmetabg.png");
+    surface = IMG_Load(texture_file);
     if (surface) {
 	info->texture = SDL_GL_LoadTexture(surface, &(info->txc));
 	SDL_FreeSurface(surface);

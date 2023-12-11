@@ -37,6 +37,8 @@
 extern int Gui_init(void);
 extern void Gui_cleanup(void);
 
+extern char conf_font_file_string[];		/* Default name of font file */
+
 SDL_WindowFlags windowFlags = 0;
 SDL_Window  *mainWindow = NULL;
 SDL_GLContext glContext = NULL;
@@ -117,7 +119,7 @@ static bool find_size(int *w, int *h)
 int Init_window(void)
 {
     int value;
-    char defaultfontname[] = CONF_FONTDIR "FreeSansBoldOblique.ttf";
+    char *defaultfontname = conf_font_file_string;
     bool gf_exists = true,df_exists = true,gf_init = false, mf_init = false;
     
     if (TTF_Init()) {
@@ -360,7 +362,7 @@ static xp_option_t sdlinit_options[] = {
 
     XP_STRING_OPTION(
 	"TTFont",
-	CONF_FONTDIR "FreeSansBoldOblique.ttf",
+	conf_font_file_string,
 	NULL, 0,
 	Set_fontName, NULL, Get_fontName,
 	XP_OPTFLAG_DEFAULT,

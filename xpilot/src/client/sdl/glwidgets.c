@@ -4081,7 +4081,7 @@ GLWidget *Init_ImageButtonWidget(const char *text,
     height = info->tex.height + 1;
 
 #ifdef HAVE_SDL_IMAGE
-    sprintf(imagePath, "%s%s", CONF_TEXTUREDIR, upImage);
+    sprintf(imagePath, "%s%s", Conf_texturedir(), upImage);
     surface = IMG_Load(imagePath);
     if (surface) {
 	info->imageUp = SDL_GL_LoadTexture(surface, &(info->txcUp));
@@ -4091,7 +4091,7 @@ GLWidget *Init_ImageButtonWidget(const char *text,
     } else {
 	error("Failed to load button image %s", imagePath);
     }
-    sprintf(imagePath, "%s%s", CONF_TEXTUREDIR, downImage);
+    sprintf(imagePath, "%s%s", Conf_texturedir(), downImage);
     surface = IMG_Load(imagePath);
     if (surface) {
 	info->imageDown = SDL_GL_LoadTexture(surface, &(info->txcDown));

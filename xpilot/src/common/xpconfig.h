@@ -26,6 +26,8 @@
 #ifndef XPCONFIG_H
 #define XPCONFIG_H
 
+#define CONF_MAXLEN 4096
+
 #ifdef _WINDOWS
 #  /* kps - what about this ???? */
 #  undef CONF_DATADIR
@@ -58,6 +60,10 @@
 
 #ifndef CONF_FONTDIR
 #  define CONF_FONTDIR			CONF_DATADIR "fonts/"
+#endif
+
+#ifndef CONF_FONT_FILE
+#  define CONF_FONT_FILE		CONF_FONTDIR "FreeSansBoldOblique.ttf"
 #endif
 
 #ifndef CONF_DEFAULTS_FILE_NAME
@@ -169,6 +175,7 @@
 #  pragma warning (disable : 4244 4761)
 #endif
 
+void Conf_init();
 void Conf_print(void);
 char *Conf_datadir(void);
 char *Conf_defaults_file_name(void);
@@ -176,6 +183,7 @@ char *Conf_password_file_name(void);
 char *Conf_player_passwords_file_name(void);
 char *Conf_mapdir(void);
 char *Conf_fontdir(void);
+char *Conf_font_file();
 char *Conf_default_map(void);
 char *Conf_servermotdfile(void);
 char *Conf_localmotdfile(void);

@@ -384,5 +384,5 @@
    code using `volatile' can become incorrect without. Disable with care. */
 /* #undef volatile */
 
-#define CONF_DATADIR "/usr/local/share/xpilot-ng/"
+#define CONF_DATADIR "/Library/Application Support/xpilot-ng/"
 #define MACOSX_FRAMEWORKS 1

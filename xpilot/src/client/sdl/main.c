@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
     connectParam.contact_port = SERVER_PORT;
     connectParam.team = TEAM_NOT_SET;
 
+	Conf_init();
     Store_default_options();
     Store_talk_macro_options();
     Store_key_options();
